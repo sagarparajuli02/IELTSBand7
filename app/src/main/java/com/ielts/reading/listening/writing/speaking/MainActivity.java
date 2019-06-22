@@ -26,7 +26,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String HI = "https://api.myjson.com/bins/ldfbd";
+    private static final String HI = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=25&playlistId=UUglDIsg_Z9mE2oT9hsrbzFA&key=AIzaSyCFfSk_W8OzyxjSK6evcIqFOvH0VPg4vFc";
     private RecyclerView rv;
     private List<List_Data> list_data;
     private SmallVideoAdapter adapter;

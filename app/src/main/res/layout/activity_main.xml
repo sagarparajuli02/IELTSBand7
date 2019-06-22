@@ -220,10 +220,10 @@
                 android:text="Enjoying Our App ?"/>
            <Button
                android:layout_width="wrap_content"
-               android:layout_height="20dp"
+               android:layout_height="27dp"
                android:text="Rate Us"
                android:textColor="#ffffff"
-
+               android:padding="2dp"
                android:background="#9A2548"
                android:textAllCaps="false"/>
         </LinearLayout>
