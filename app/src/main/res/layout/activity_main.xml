@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:orientation="horizontal">
+            <Button
+                android:textSize="16dp"
+                android:id="@+id/writing"
+                android:layout_width="wrap_content"
+                android:layout_height="110dp"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:background="#fff" 
+                android:drawableTop="@drawable/writing"
+                android:padding="10dp"
+                android:text="Writing"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary" />
+
+            <Button
+                android:id="@+id/reading"
+                android:layout_weight="1"
+                android:textSize="16dp"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="110dp"
+                android:layout_margin="5dp"
+                android:background="#fff"
+                android:drawableTop="@drawable/reading"
+                android:padding="10dp"
+                android:text="Reading"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary" />
+
+            <Button
+                android:id="@+id/listening"
+                android:layout_width="wrap_content"
+                android:layout_height="110dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:textSize="16dp"
+                android:background="#fff"
+                android:drawableTop="@drawable/listening"
+                android:padding="10dp"
+                android:text="Listening"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary" />
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:layout_weight="1"
+                android:textSize="16dp"
+
+                android:id="@+id/speaking"
+                android:layout_width="wrap_content"
+                android:layout_height="110dp"
+                android:layout_margin="5dp"
+                android:background="#fff"
+                android:drawableTop="@drawable/speaking"
+                android:padding="10dp"
+                android:text="Speaking"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary" />
+
+            <Button
+
+                android:id="@+id/proTips"                 
+                android:layout_width="wrap_content"
+                android:layout_height="110dp"
+                android:layout_weight="1"
+                android:textSize="16dp"
+                android:layout_margin="5dp"
+                android:background="#fff"
+                android:drawableTop="@drawable/tips"
+                android:padding="10dp"
+                android:text="Pro Tips"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary" />
+
+            <Button
+                android:textSize="16dp"
+                android:id="@+id/faq" 
+                android:layout_width="wrap_content"
+                android:layout_height="110dp"
+                android:layout_margin="5dp"
+                android:background="#fff"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/faq"
+                android:padding="10dp"
+                android:text="FAQ"
+                android:textColor="@color/colorPrimary" />
+        </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+        <Button
+            android:id="@+id/vocabulary"
+            android:layout_width="wrap_content"
+            android:layout_height="110dp"
+            android:layout_margin="5dp"
+            android:background="#fff"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/blocks"
+            android:padding="10dp"
+            android:text="Vocabulary"
+            android:textSize="16dp"
+
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary" />
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/converter"
+            android:layout_width="wrap_content"
+            android:layout_height="110dp"
+            android:layout_margin="5dp"
+            android:background="#fff"
+            android:drawableTop="@drawable/convert"
+            android:padding="10dp"
+            android:text="Converter"
+            android:textAllCaps="false"
+            android:textSize="16dp"
+            android:textColor="@color/colorPrimary" />
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/studyAbroad"
+            android:layout_width="wrap_content"
+            android:layout_height="110dp"
+            android:layout_margin="5dp"
+            android:background="#fff"
+            android:drawableTop="@drawable/globe"
+            android:padding="10dp"
+            android:text="Abroad"
+            android:textSize="16dp"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary" />
+</LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="#fff"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textColor="#000"
+                android:id="@+id/videos"
+                android:layout_margin="10dp"
+                android:text="Videos"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/moreVideos"
+                android:text="More"
+                android:textColor="@color/colorPrimary"
+                android:layout_margin="10dp"
+                android:layout_alignParentRight="true"
+                android:textSize="16dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_below="@+id/moreVideos"
+                android:layout_height="200dp">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="#fff"
+            android:padding="8dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:src="@drawable/ic_happy"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:gravity="center"
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:textColor="#000"
+                android:textSize="18dp"
+                android:layout_height="wrap_content"
+                android:text="Enjoying Our App ?"/>
+           <Button
+               android:layout_width="wrap_content"
+               android:layout_height="20dp"
+               android:text="Rate Us"
+               android:textColor="#ffffff"
+
+               android:background="#9A2548"
+               android:textAllCaps="false"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:background="#fff"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/downloadtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_centerInParent="true"
+                android:text="Download Materials"
+                android:textColor="#000"
+                android:textSize="20dp" />
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_below="@+id/downloadtext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/freeDownloads"
+                android:layout_width="130dp"
+                android:layout_height="110dp"
+                android:layout_below="@+id/downloadtext"
+                android:layout_alignLeft="@+id/paidDownloads"
+                android:layout_margin="20dp"
+                android:padding="10dp"
+                android:translationZ="2dp"
+                android:textStyle="bold"
+                android:elevation="2dp"
+                android:background="#61BF79"
+                android:layout_alignParentLeft="true"
+                android:text="Free Materials"
+                android:textColor="#fff" />
+
+
+            <Button
+                android:textStyle="bold"
+                android:id="@+id/paidDownloads"
+                android:translationZ="2dp"
+                android:elevation="2dp"
+                android:layout_width="130dp"
+                android:layout_height="110dp"
+                android:padding="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="16dp"
+                android:layout_margin="20dp"
+                android:background="#C74D4A"
+                android:text="Paid Materaials"
+                android:textColor="#fff" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="#fff"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:layout_height="200dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textColor="#000"
+                android:layout_margin="10dp"
+                android:text="Latest Blogs"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/moreBlogs"
+                android:text="More"
+                android:textColor="@color/colorPrimary"
+                android:layout_margin="10dp"
+                android:layout_alignParentRight="true"
+                android:textSize="16dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:layout_below="@+id/moreBlogs"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="Here will me recycler view"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</ScrollView>
