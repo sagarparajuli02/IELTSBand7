@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String HI = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=25&playlistId=UUglDIsg_Z9mE2oT9hsrbzFA&key=AIzaSyCFfSk_W8OzyxjSK6evcIqFOvH0VPg4vFc";
     private RecyclerView rv;
+    RecyclerView recyclerView;
     private List<List_Data> list_data;
     private SmallVideoAdapter adapter;
 
@@ -41,8 +42,16 @@ public class MainActivity extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         list_data=new ArrayList<>();
         adapter=new SmallVideoAdapter(list_data,this);
-
         getData();
+
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+
+        //Call Read rss asyntask to fetch rss
+        ReadRss readRss = new ReadRss(this, recyclerView);
+        readRss.execute();
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
 
 
         Button writingButton=(Button)findViewById(R.id.writing);
