@@ -1,0 +1,10 @@
+@font-face {
+    font-family: MyFont;
+    src: url("file:///android_asset/fonts/Lato.ttf")
+}
+body {
+    font-family: MyFont;
+    font-size: medium;
+
+}
+img{display: inline; height: auto; max-width: 100%;}
