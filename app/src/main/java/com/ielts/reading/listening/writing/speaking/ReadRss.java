@@ -3,8 +3,8 @@ package com.ielts.reading.listening.writing.speaking;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -26,18 +26,15 @@ public class ReadRss extends AsyncTask<Void, Void, Void> {
     Context context;
     String address = "http://feeds.feedburner.com/co/wdBZ";
     ArrayList<FeedItem> feedItems;
-    RecyclerView recyclerView;
+    RecyclerView newsRecyclerView;
     URL url;
 
-    public ReadRss(Context context, RecyclerView recyclerView) {
-        this.recyclerView = recyclerView;
+    public ReadRss(Context context, RecyclerView newsRecyclerView) {
+        this.newsRecyclerView = newsRecyclerView;
         this.context = context;
 
     }
 
-
-
-    //before fetching of rss statrs show progress to user
     @Override
     protected void onPreExecute() {
         //mDialog.show();
@@ -59,9 +56,9 @@ public class ReadRss extends AsyncTask<Void, Void, Void> {
         super.onPostExecute(aVoid);
         // mDialog.dismiss();
         FeedsAdapter adapter = new FeedsAdapter(context, feedItems);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.addItemDecoration(new VerticalSpace(20));
-        recyclerView.setAdapter(adapter);
+        newsRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+        newsRecyclerView.addItemDecoration(new VerticalSpace(20));
+        newsRecyclerView.setAdapter(adapter);
 
     }
 
@@ -89,7 +86,7 @@ public class ReadRss extends AsyncTask<Void, Void, Void> {
                             item.setLink(cureent.getTextContent());
                         } else if (cureent.getNodeName().equalsIgnoreCase("media:thumbnail")) {
                             //this will return us thumbnail url
-                            String url = cureent.getAttributes().item(2).getTextContent();
+                            String url = cureent.getAttributes().item(1).getTextContent();
                             item.setThumbnailUrl(url);
                         }
                     }

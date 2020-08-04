@@ -1,12 +1,10 @@
 package com.ielts.reading.listening.writing.speaking;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,7 +22,7 @@ import java.util.List;
 
 public class Videos extends AppCompatActivity {
 
-    private static final String HI = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=25&playlistId=UUglDIsg_Z9mE2oT9hsrbzFA&key=AIzaSyCFfSk_W8OzyxjSK6evcIqFOvH0VPg4vFc";
+    private static final String HI = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=25&playlistId=UUglDIsg_Z9mE2oT9hsrbzFA&key=AIzaSyAhBTxMTNqY_sHQMAy4Y4vOF6-zlaThLlI";
     private RecyclerView rv;
     private List<List_Data>list_data;
     private MyAdapter adapter;
@@ -58,9 +56,6 @@ public class Videos extends AppCompatActivity {
                         JSONObject url = defaulturl.getJSONObject("medium");
                         String imageurl= url.getString("url");
                         String title= snippets.getString("title");
-
-
-
 
                         List_Data ld=new List_Data(title,imageurl);
                         list_data.add(ld);

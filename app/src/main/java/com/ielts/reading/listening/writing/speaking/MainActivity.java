@@ -1,14 +1,14 @@
 package com.ielts.reading.listening.writing.speaking;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,9 +26,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String HI = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=25&playlistId=UUglDIsg_Z9mE2oT9hsrbzFA&key=AIzaSyCFfSk_W8OzyxjSK6evcIqFOvH0VPg4vFc";
-    private RecyclerView rv;
-    RecyclerView recyclerView;
+    private static final String HI = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=25&playlistId=UUglDIsg_Z9mE2oT9hsrbzFA&key=AIzaSyAhBTxMTNqY_sHQMAy4Y4vOF6-zlaThLlI";
+
+    RecyclerView newsRecyclerView;
+    RecyclerView videoRecyclerView;
     private List<List_Data> list_data;
     private SmallVideoAdapter adapter;
 
@@ -37,21 +38,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        rv=(RecyclerView)findViewById(R.id.recycler_view);
-        rv.setHasFixedSize(true);
-        rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        videoRecyclerView=findViewById(R.id.videoRecyclerView);
         list_data=new ArrayList<>();
         adapter=new SmallVideoAdapter(list_data,this);
+        videoRecyclerView.setHasFixedSize(true);
+        videoRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+
+        videoRecyclerView.setAdapter(adapter);
         getData();
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        newsRecyclerView = (RecyclerView) findViewById(R.id.newsRecyclerView);
 
-        //Call Read rss asyntask to fetch rss
-        ReadRss readRss = new ReadRss(this, recyclerView);
-        readRss.execute();
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        //Call Read rss asyntask to fetch rss NEWS
+        ReadRss readRss = new ReadRss(this, newsRecyclerView);
 
+        newsRecyclerView.setHasFixedSize(true);
+        newsRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+      //  readRss.execute();
 
 
         Button writingButton=(Button)findViewById(R.id.writing);
@@ -141,13 +145,10 @@ public class MainActivity extends AppCompatActivity {
                         String imageurl= url.getString("url");
                         String title= snippets.getString("title");
 
-
-
-
                         List_Data ld=new List_Data(title,imageurl);
                         list_data.add(ld);
                     }
-                    rv.setAdapter(adapter);
+                    videoRecyclerView.setAdapter(adapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -156,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(MainActivity.this, "Error ocurs", Toast.LENGTH_SHORT).show();
             }
         });
         RequestQueue requestQueue= Volley.newRequestQueue(this);
