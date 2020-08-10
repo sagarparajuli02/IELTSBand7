@@ -1,6 +1,5 @@
 package com.ielts.reading.listening.writing.speaking;
 
-
 import android.content.Context;
 
 import androidx.fragment.app.Fragment;
@@ -18,7 +17,7 @@ public class WritingAdapter extends FragmentPagerAdapter {
         this.totalTabs = totalTabs;
     }
 
-    // this is for fragment tabs
+    // this is for fragment tabs  
     @Override
     public Fragment getItem(int position) {
         switch (position) {
@@ -33,7 +32,7 @@ public class WritingAdapter extends FragmentPagerAdapter {
                 return null;
         }
     }
-    // this counts total number of tabs
+    // this counts total number of tabs  
     @Override
     public int getCount() {
         return totalTabs;
