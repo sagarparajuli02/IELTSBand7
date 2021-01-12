@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         videoRecyclerView=findViewById(R.id.videoRecyclerView);
+
+
         list_data=new ArrayList<>();
         adapter=new SmallVideoAdapter(list_data,this);
         videoRecyclerView.setHasFixedSize(true);
@@ -52,10 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Call Read rss asyntask to fetch rss NEWS
         ReadRss readRss = new ReadRss(this, newsRecyclerView);
-
-        newsRecyclerView.setHasFixedSize(true);
-        newsRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-      //  readRss.execute();
+       readRss.execute();
 
 
         Button writingButton=(Button)findViewById(R.id.writing);
@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
         Button speakingButton=(Button)findViewById(R.id.speaking);
         Button tipsButton=(Button)findViewById(R.id.proTips);
         Button faqButton=(Button)findViewById(R.id.faq);
-        Button vocabularyButton=(Button)findViewById(R.id.vocabulary);
         TextView videosButton=(TextView) findViewById(R.id.moreVideos);
 
 
@@ -111,13 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(tipsButton);
             }
         });
-        vocabularyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent vocabularyButton = new Intent(MainActivity.this,Vocabulary.class) ;
-                startActivity(vocabularyButton);
-            }
-        });
+
         videosButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

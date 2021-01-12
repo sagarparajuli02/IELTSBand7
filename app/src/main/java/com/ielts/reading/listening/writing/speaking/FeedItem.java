@@ -1,5 +1,4 @@
 package com.ielts.reading.listening.writing.speaking;
-
 public class FeedItem {
     String title;
     String link;

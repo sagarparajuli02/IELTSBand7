@@ -7,7 +7,6 @@
     android:id="@+id/cardview"
     app:cardElevation="2dp"
     app:cardCornerRadius="2dp">
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -54,6 +53,7 @@
             android:layout_alignRight="@+id/date_text"
             android:layout_alignEnd="@+id/date_text" />
     </RelativeLayout>
+
 
 
 </androidx.cardview.widget.CardView>

@@ -7,12 +7,19 @@
     android:layout_margin="10dp"
     app:cardCornerRadius="8dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
        >
 
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            android:id="@+id/progress_circular"
+            android:layout_height="wrap_content">
+
+        </ProgressBar>
         <ImageView
             android:id="@+id/image_view"
             android:layout_width="match_parent"
@@ -24,9 +31,10 @@
             android:text="name"
             android:padding="8dp"
             android:lines="2"
+            android:layout_below="@+id/image_view"
             android:textSize="16sp"
             android:textColor="@android:color/background_dark"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

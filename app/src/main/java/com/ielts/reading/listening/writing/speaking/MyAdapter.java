@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -38,6 +39,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 .into(holder.img);
 
         holder.txtname.setText(listData.getName());
+        holder.progressBar.setVisibility(View.INVISIBLE);
 
     }
 
@@ -49,10 +51,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder{
         private ImageView img;
         private TextView txtname;
+        private ProgressBar progressBar;
         public ViewHolder(View itemView) {
             super(itemView);
             img=(ImageView)itemView.findViewById(R.id.image_view);
             txtname=(TextView)itemView.findViewById(R.id.text_name);
+            progressBar=(ProgressBar)itemView.findViewById(R.id.progress_circular);
+
         }
     }
 }

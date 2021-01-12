@@ -19,25 +19,22 @@ import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-/**
- * Created by rishabh on 31-01-2016.
- */
 public class ReadRss extends AsyncTask<Void, Void, Void> {
     Context context;
-    String address = "http://feeds.feedburner.com/co/wdBZ";
+    String address = "http://www.sciencemag.org/rss/news_current.xml";
     ArrayList<FeedItem> feedItems;
-    RecyclerView newsRecyclerView;
+    RecyclerView recyclerView;
     URL url;
 
-    public ReadRss(Context context, RecyclerView newsRecyclerView) {
-        this.newsRecyclerView = newsRecyclerView;
+    public ReadRss(Context context, RecyclerView recyclerView) {
+        this.recyclerView = recyclerView;
         this.context = context;
 
     }
 
+    //before fetching of rss statrs show progress to user
     @Override
     protected void onPreExecute() {
-        //mDialog.show();
         super.onPreExecute();
     }
 
@@ -54,11 +51,10 @@ public class ReadRss extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        // mDialog.dismiss();
         FeedsAdapter adapter = new FeedsAdapter(context, feedItems);
-        newsRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-        newsRecyclerView.addItemDecoration(new VerticalSpace(20));
-        newsRecyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.addItemDecoration(new VerticalSpace(20));
+        recyclerView.setAdapter(adapter);
 
     }
 
@@ -69,7 +65,7 @@ public class ReadRss extends AsyncTask<Void, Void, Void> {
             Element root = data.getDocumentElement();
             Node channel = root.getChildNodes().item(1);
             NodeList items = channel.getChildNodes();
-            for (int i = 0; i < items.getLength(); i++) {
+            for (int i = 1; i < items.getLength(); i++) {
                 Node cureentchild = items.item(i);
                 if (cureentchild.getNodeName().equalsIgnoreCase("item")) {
                     FeedItem item = new FeedItem();
@@ -86,7 +82,7 @@ public class ReadRss extends AsyncTask<Void, Void, Void> {
                             item.setLink(cureent.getTextContent());
                         } else if (cureent.getNodeName().equalsIgnoreCase("media:thumbnail")) {
                             //this will return us thumbnail url
-                            String url = cureent.getAttributes().item(1).getTextContent();
+                            String url = cureent.getAttributes().item(0).getTextContent();
                             item.setThumbnailUrl(url);
                         }
                     }
