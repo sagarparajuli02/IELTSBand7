@@ -1,8 +1,11 @@
 package com.ielts.reading.listening.writing.speaking;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,9 +22,10 @@ import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+
 public class ReadRss extends AsyncTask<Void, Void, Void> {
     Context context;
-    String address = "http://www.sciencemag.org/rss/news_current.xml";
+    String address = "https://www.ieltsbuddy.com/ielts.xml";
     ArrayList<FeedItem> feedItems;
     RecyclerView recyclerView;
     URL url;
@@ -65,7 +69,7 @@ public class ReadRss extends AsyncTask<Void, Void, Void> {
             Element root = data.getDocumentElement();
             Node channel = root.getChildNodes().item(1);
             NodeList items = channel.getChildNodes();
-            for (int i = 1; i < items.getLength(); i++) {
+            for (int i = 0; i < items.getLength(); i++) {
                 Node cureentchild = items.item(i);
                 if (cureentchild.getNodeName().equalsIgnoreCase("item")) {
                     FeedItem item = new FeedItem();

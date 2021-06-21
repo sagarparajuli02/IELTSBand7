@@ -3,11 +3,13 @@ package com.ielts.reading.listening.writing.speaking;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String HI = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=25&playlistId=UUglDIsg_Z9mE2oT9hsrbzFA&key=AIzaSyAhBTxMTNqY_sHQMAy4Y4vOF6-zlaThLlI";
 
-    RecyclerView newsRecyclerView;
     RecyclerView videoRecyclerView;
+    RecyclerView recyclerView;
+
     private List<List_Data> list_data;
     private SmallVideoAdapter adapter;
 
@@ -38,9 +41,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
 
         videoRecyclerView=findViewById(R.id.videoRecyclerView);
 
+
+        ReadRss readRss = new ReadRss(this, recyclerView);
+        readRss.execute();
 
         list_data=new ArrayList<>();
         adapter=new SmallVideoAdapter(list_data,this);
@@ -51,11 +60,6 @@ public class MainActivity extends AppCompatActivity {
         videoRecyclerView.setAdapter(adapter);
         getData();
 
-        newsRecyclerView = (RecyclerView) findViewById(R.id.newsRecyclerView);
-
-        //Call Read rss asyntask to fetch rss NEWS
-        ReadRss readRss = new ReadRss(this, newsRecyclerView);
-       readRss.execute();
 
 
         Button writingButton=(Button)findViewById(R.id.writing);

@@ -1,21 +1,22 @@
 package com.ielts.reading.listening.writing.speaking;
 
-
 import android.content.Context;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.MyViewHolder> {
-    ArrayList<FeedItem>feedItems ;
+    ArrayList<FeedItem>feedItems;
     Context context;
     public FeedsAdapter(Context context, ArrayList<FeedItem>feedItems){
         this.feedItems=feedItems;
@@ -42,7 +43,7 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.MyViewHolder
 
     @Override
     public int getItemCount() {
-        return feedItems==null? 0 : feedItems.size();
+        return feedItems.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -51,11 +52,11 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.MyViewHolder
         CardView cardView;
         public MyViewHolder(View itemView) {
             super(itemView);
-            Title= itemView.findViewById(R.id.title_text);
-            Description=  itemView.findViewById(R.id.description_text);
-            Date=  itemView.findViewById(R.id.date_text);
-            Thumbnail=  itemView.findViewById(R.id.thumb_img);
-            cardView=  itemView.findViewById(R.id.cardview);
+            Title= (TextView) itemView.findViewById(R.id.title_text);
+            Description= (TextView) itemView.findViewById(R.id.description_text);
+            Date= (TextView) itemView.findViewById(R.id.date_text);
+            Thumbnail= (ImageView) itemView.findViewById(R.id.thumb_img);
+            cardView= (CardView) itemView.findViewById(R.id.cardview);
         }
     }
 }
