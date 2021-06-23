@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetailWebView"></activity>
+        <activity android:name=".VideoDetailView"></activity>
+        <activity android:name=".DetailWebView" />
         <activity android:name=".Downloads" />
         <activity android:name=".Videos" />
         <activity android:name=".Vocabulary" />
@@ -25,10 +26,15 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <data android:scheme="http" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
-
+    <queries>
+        <intent>
+            <action android:name="com.google.android.youtube.api.service.START" />
+        </intent>
+    </queries>
 </manifest>

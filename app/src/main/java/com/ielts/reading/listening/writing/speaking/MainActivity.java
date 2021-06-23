@@ -2,6 +2,8 @@ package com.ielts.reading.listening.writing.speaking;
 
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.lifecycle.ViewModelProvider;
@@ -41,16 +43,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+
+        recyclerView =findViewById(R.id.recyclerview);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
-
-        videoRecyclerView=findViewById(R.id.videoRecyclerView);
-
-
         ReadRss readRss = new ReadRss(this, recyclerView);
         readRss.execute();
 
+        videoRecyclerView=findViewById(R.id.videoRecyclerView);
         list_data=new ArrayList<>();
         adapter=new SmallVideoAdapter(list_data,this);
         videoRecyclerView.setHasFixedSize(true);
@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         Button tipsButton=(Button)findViewById(R.id.proTips);
         Button faqButton=(Button)findViewById(R.id.faq);
         TextView videosButton=(TextView) findViewById(R.id.moreVideos);
+        Button rateApp =(Button) findViewById(R.id.updateApp) ;
 
 
         writingButton.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +123,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(videosButton);
             }
         });
+        rateApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.sagar.swoopnasuman"));
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -141,8 +149,11 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject url = defaulturl.getJSONObject("medium");
                         String imageurl= url.getString("url");
                         String title= snippets.getString("title");
+                        JSONObject resourceId = snippets.getJSONObject("resourceId");
+                        String videoId= resourceId.getString("videoId");
 
-                        List_Data ld=new List_Data(title,imageurl);
+
+                        List_Data ld=new List_Data(title,imageurl,videoId);
                         list_data.add(ld);
                     }
                     videoRecyclerView.setAdapter(adapter);

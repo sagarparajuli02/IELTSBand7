@@ -2,6 +2,7 @@ package com.ielts.reading.listening.writing.speaking;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,6 +32,11 @@ public class Videos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videos);
+        setTitle("Videos");
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);;
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
         rv=(RecyclerView)findViewById(R.id.recycler_view);
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -56,8 +62,9 @@ public class Videos extends AppCompatActivity {
                         JSONObject url = defaulturl.getJSONObject("medium");
                         String imageurl= url.getString("url");
                         String title= snippets.getString("title");
-
-                        List_Data ld=new List_Data(title,imageurl);
+                        JSONObject resourceId = snippets.getJSONObject("resourceId");
+                        String videoId= resourceId.getString("videoId");
+                        List_Data ld=new List_Data(title,imageurl,videoId);
                         list_data.add(ld);
                     }
                     rv.setAdapter(adapter);
@@ -74,5 +81,11 @@ public class Videos extends AppCompatActivity {
         });
         RequestQueue requestQueue= Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==android.R.id.home);
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 }

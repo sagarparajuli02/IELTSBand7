@@ -4,17 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 public class DetailWebView extends AppCompatActivity {
 
     WebView webView;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_web_view);
-
     String title=getIntent().getStringExtra("title");
     setTitle(title);
         if(getSupportActionBar()!=null){
@@ -25,6 +28,7 @@ public class DetailWebView extends AppCompatActivity {
                 String mainUrl = getIntent().getStringExtra("localUrl");
 
                 webView = (WebView)findViewById(R.id.WebView);
+                progressBar=findViewById(R.id.progressBar);
 
                 WebSettings webSetting = webView.getSettings();
                 webSetting.setBuiltInZoomControls(true);
@@ -43,6 +47,17 @@ private class WebViewClient extends android.webkit.WebViewClient
     public boolean shouldOverrideUrlLoading(WebView view, String url)
     {
         return super.shouldOverrideUrlLoading(view, url);
+
+    }
+    @Override
+    public void onPageFinished(WebView view, String url) {
+       progressBar.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+        Toast.makeText(DetailWebView.this, "Error Occurred" , Toast.LENGTH_SHORT).show();
+
     }
 }
 

@@ -1,11 +1,13 @@
 package com.ielts.reading.listening.writing.speaking;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,12 +36,20 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.MyViewHolder
         FeedItem current=feedItems.get(position);
         holder.Title.setText(current.getTitle());
         holder.Description.setText(current.getDescription());
-        holder.Date.setText(current.getPubDate());
         Picasso.get().load(current.getThumbnailUrl()).into(holder.Thumbnail);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent webview= new Intent(context,DetailWebView.class);
+                webview.putExtra("localUrl",current.getLink());
+                context.startActivity(webview);
+
+
+            }
+        });
+
 
     }
-
-
 
     @Override
     public int getItemCount() {
@@ -47,14 +57,13 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.MyViewHolder
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView Title,Description,Date;
+        TextView Title,Description;
         ImageView Thumbnail;
         CardView cardView;
         public MyViewHolder(View itemView) {
             super(itemView);
             Title= (TextView) itemView.findViewById(R.id.title_text);
             Description= (TextView) itemView.findViewById(R.id.description_text);
-            Date= (TextView) itemView.findViewById(R.id.date_text);
             Thumbnail= (ImageView) itemView.findViewById(R.id.thumb_img);
             cardView= (CardView) itemView.findViewById(R.id.cardview);
         }

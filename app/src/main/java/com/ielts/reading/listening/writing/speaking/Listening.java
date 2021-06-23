@@ -1,11 +1,14 @@
 package com.ielts.reading.listening.writing.speaking;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,128 +16,69 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Listening extends AppCompatActivity {
-    private Button b1,b2,b3,b4;
-    private MediaPlayer mediaPlayer;
 
-    private double startTime = 0;
-    private double finalTime = 0;
+    RecyclerView.Adapter mAdapter;
+    RecyclerView.LayoutManager layoutManager;
 
-    private Handler myHandler = new Handler();;
-    private int forwardTime = 5000;
-    private int backwardTime = 5000;
-    private SeekBar seekbar;
-    private TextView tx1,tx2;
-
-    public static int oneTimeOnly = 0;
+    List<GetterSetter> getterSetterList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        RecyclerView recyclerView;
+
         setContentView(R.layout.activity_listening);
-
-        b1 = (Button) findViewById(R.id.button);
-        b2 = (Button) findViewById(R.id.button2);
-        b3 = (Button)findViewById(R.id.button3);
-        b4 = (Button)findViewById(R.id.button4);
-
-        tx1 = (TextView)findViewById(R.id.textView2);
-        tx2 = (TextView)findViewById(R.id.textView3);
-
-        String song ="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
-
-        mediaPlayer = MediaPlayer.create(this, Uri.parse(song));
-        seekbar = (SeekBar)findViewById(R.id.seekBar);
-        seekbar.setClickable(false);
-        b2.setEnabled(false);
-
-        b3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Playing sound",Toast.LENGTH_SHORT).show();
-                        mediaPlayer.start();
-
-                finalTime = mediaPlayer.getDuration();
-                startTime = mediaPlayer.getCurrentPosition();
-
-                if (oneTimeOnly == 0) {
-                    seekbar.setMax((int) finalTime);
-                    oneTimeOnly = 1;
-                }
-
-                tx2.setText(String.format("%d min, %d sec",
-                        TimeUnit.MILLISECONDS.toMinutes((long) finalTime),
-                        TimeUnit.MILLISECONDS.toSeconds((long) finalTime) -
-                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long)
-                                        finalTime)))
-                );
-                tx1.setText(String.format("%d min, %d sec",
-                        TimeUnit.MILLISECONDS.toMinutes((long) startTime),
-                        TimeUnit.MILLISECONDS.toSeconds((long) startTime) -
-                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long)
-                                        startTime)))
-                );
-
-                seekbar.setProgress((int)startTime);
-                myHandler.postDelayed(UpdateSongTime,100);
-                b2.setEnabled(true);
-                b3.setEnabled(false);
-            }
-        });
-
-        b2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Pausing sound",Toast.LENGTH_SHORT).show();
-                        mediaPlayer.pause();
-                b2.setEnabled(false);
-                b3.setEnabled(true);
-            }
-        });
-
-        b1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int temp = (int)startTime;
-
-                if((temp+forwardTime)<=finalTime){
-                    startTime = startTime + forwardTime;
-                    mediaPlayer.seekTo((int) startTime);
-                    Toast.makeText(getApplicationContext(),"You have Jumped forward 5 seconds",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(getApplicationContext(),"Cannot jump forward 5 seconds",Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        b4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int temp = (int)startTime;
-
-                if((temp-backwardTime)>0){
-                    startTime = startTime - backwardTime;
-                    mediaPlayer.seekTo((int) startTime);
-                    Toast.makeText(getApplicationContext(),"You have Jumped backward 5 seconds",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(getApplicationContext(),"Cannot jump backward 5 seconds",Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    private Runnable UpdateSongTime = new Runnable() {
-        public void run() {
-            startTime = mediaPlayer.getCurrentPosition();
-            tx1.setText(String.format("%d min, %d sec",
-                    TimeUnit.MILLISECONDS.toMinutes((long) startTime),
-                    TimeUnit.MILLISECONDS.toSeconds((long) startTime) -
-                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
-                                    toMinutes((long) startTime)))
-            );
-            seekbar.setProgress((int)startTime);
-            myHandler.postDelayed(this, 100);
+        setTitle("Reading Topics");
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);;
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-    };
+        recyclerView = (RecyclerView) findViewById(R.id.recycleViewContainer);
+        recyclerView.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(this);
+
+        recyclerView.setLayoutManager(layoutManager);
+
+        getterSetterList = new ArrayList<>();
+
+        //Adding Data into ArrayList
+        getterSetterList.add(new GetterSetter("Sample 1","file:///android_asset/reading/read80.html"));
+        getterSetterList.add(new GetterSetter("Intoduction","file:///android_asset/reading/read80.html"));
+        getterSetterList.add(new GetterSetter("Intoduction","file:///android_asset/reading/read80.html"));
+        getterSetterList.add(new GetterSetter("Intoduction","file:///android_asset/reading/read80.html"));
+        getterSetterList.add(new GetterSetter("Intoduction","file:///android_asset/reading/read80.html"));
+        getterSetterList.add(new GetterSetter("nvbv","file:///android_asset/reading/read80.html"));
+        getterSetterList.add(new GetterSetter("Valiables","file:///android_asset/javascript/variables.html"));
+        getterSetterList.add(new GetterSetter("Operators","file:///android_asset/javascript/operator.html"));
+        getterSetterList.add(new GetterSetter("If..Else","file:///android_asset/javascript/ifelse.html"));
+        getterSetterList.add(new GetterSetter("Switch Case","file:///android_asset/javascript/switch.html"));
+        getterSetterList.add(new GetterSetter("While  Loop","file:///android_asset/javascript/while.html"));
+        getterSetterList.add(new GetterSetter("For Loop","file:///android_asset/javascript/for.html"));
+        getterSetterList.add(new GetterSetter("Loop Control","file:///android_asset/javascript/loopcontrol.html"));
+        getterSetterList.add(new GetterSetter("Functions","file:///android_asset/javascript/function.html"));
+        getterSetterList.add(new GetterSetter("Events","file:///android_asset/javascript/events.html"));
+        getterSetterList.add(new GetterSetter("Cookies","file:///android_asset/javascript/cookies.html"));
+        getterSetterList.add(new GetterSetter("Html DOM","file:///android_asset/javascript/htmldom.html"));
+        getterSetterList.add(new GetterSetter("Error Handling","file:///android_asset/javascript/errorhandeling.html"));
+        getterSetterList.add(new GetterSetter("Animation","file:///android_asset/javascript/lanimatuons.html"));
+        getterSetterList.add(new GetterSetter("Browser","file:///android_asset/javascript/browser.html"));
+
+
+        mAdapter = new WebViewAdapter(this, getterSetterList);
+
+        recyclerView.setAdapter(mAdapter);
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==android.R.id.home);
+        finish();
+        return super.onOptionsItemSelected(item);
+    }
 }

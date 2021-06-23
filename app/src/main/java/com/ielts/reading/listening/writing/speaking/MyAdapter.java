@@ -3,6 +3,8 @@ package com.ielts.reading.listening.writing.speaking;
 
 import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,11 +37,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         Picasso.get()
                 .load(listData
-                        .getImage_url())
+                        .getUrl())
                 .into(holder.img);
 
-        holder.txtname.setText(listData.getName());
-        holder.progressBar.setVisibility(View.INVISIBLE);
+        holder.txtname.setText(listData.getTitle());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent videoPlayer= new Intent(context,VideoDetailView.class);
+                videoPlayer.putExtra("videoId",listData.getVideoId());
+                videoPlayer.putExtra("title",listData.getTitle());
+                context.startActivity(videoPlayer);
+
+
+            }
+        });
 
     }
 
@@ -56,7 +68,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             super(itemView);
             img=(ImageView)itemView.findViewById(R.id.image_view);
             txtname=(TextView)itemView.findViewById(R.id.text_name);
-            progressBar=(ProgressBar)itemView.findViewById(R.id.progress_circular);
 
         }
     }

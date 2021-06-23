@@ -2,6 +2,8 @@ package com.ielts.reading.listening.writing.speaking;
 
 import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,11 +35,23 @@ public class SmallVideoAdapter  extends RecyclerView.Adapter<SmallVideoAdapter.V
 
         Picasso.get()
                 .load(listData
-                        .getImage_url())
+                        .getUrl())
                 .fit()
                 .into(holder.img);
 
-        holder.txtname.setText(listData.getName());
+        holder.txtname.setText(listData.getTitle());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent videoPlayer= new Intent(context,VideoDetailView.class);
+                videoPlayer.putExtra("videoId",listData.getVideoId());
+                videoPlayer.putExtra("title",listData.getTitle());
+
+                context.startActivity(videoPlayer);
+
+
+            }
+        });
 
     }
 

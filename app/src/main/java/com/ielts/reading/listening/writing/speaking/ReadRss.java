@@ -25,7 +25,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 public class ReadRss extends AsyncTask<Void, Void, Void> {
     Context context;
-    String address = "https://www.ieltsbuddy.com/ielts.xml";
+    String address = "https://www.isamigrations.com/blog/feed/";
     ArrayList<FeedItem> feedItems;
     RecyclerView recyclerView;
     URL url;
@@ -56,7 +56,6 @@ public class ReadRss extends AsyncTask<Void, Void, Void> {
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
         FeedsAdapter adapter = new FeedsAdapter(context, feedItems);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.addItemDecoration(new VerticalSpace(20));
         recyclerView.setAdapter(adapter);
 
@@ -84,11 +83,11 @@ public class ReadRss extends AsyncTask<Void, Void, Void> {
                             item.setPubDate(cureent.getTextContent());
                         } else if (cureent.getNodeName().equalsIgnoreCase("link")) {
                             item.setLink(cureent.getTextContent());
-                        } else if (cureent.getNodeName().equalsIgnoreCase("media:thumbnail")) {
-                            //this will return us thumbnail url
-                            String url = cureent.getAttributes().item(0).getTextContent();
-                            item.setThumbnailUrl(url);
                         }
+                            //this will return us thumbnail url
+                            String url = "https://images.pexels.com/photos/256417/pexels-photo-256417.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=320&w=420";
+                            item.setThumbnailUrl(url);
+
                     }
                     feedItems.add(item);
 
@@ -98,7 +97,6 @@ public class ReadRss extends AsyncTask<Void, Void, Void> {
         }
     }
 
-    //This method will download rss feed document from specified url
     public Document Getdata() {
         try {
             url = new URL(address);

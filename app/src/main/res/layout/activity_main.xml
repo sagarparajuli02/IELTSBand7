@@ -187,6 +187,7 @@
                 android:text="Rate Us"
                 android:textColor="#ffffff"
                 android:padding="2dp"
+                android:id="@+id/updateApp"
                 android:layout_margin="10dp"
                 android:background="#9A2548"
                 android:textAllCaps="false"/>
@@ -194,66 +195,6 @@
         </androidx.cardview.widget.CardView>
 
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:layout_marginBottom="7dp"
-            android:background="#fff"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/downloadtext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_centerInParent="true"
-                android:text="Download Materials"
-                android:textColor="#000"
-                android:textSize="20dp" />
-
-            <LinearLayout
-                android:gravity="center"
-                android:layout_below="@+id/downloadtext"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/freeDownloads"
-                android:layout_width="130dp"
-                android:layout_height="110dp"
-                android:layout_below="@+id/downloadtext"
-                android:layout_alignLeft="@+id/paidDownloads"
-                android:layout_margin="20dp"
-                android:padding="10dp"
-                android:translationZ="2dp"
-                android:textStyle="bold"
-                android:elevation="2dp"
-                android:background="#61BF79"
-                android:layout_alignParentLeft="true"
-                android:text="Free Materials"
-                android:textColor="#fff" />
-
-
-            <Button
-                android:textStyle="bold"
-                android:id="@+id/paidDownloads"
-                android:translationZ="2dp"
-                android:elevation="2dp"
-                android:layout_width="130dp"
-                android:layout_height="110dp"
-                android:padding="10dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="16dp"
-                android:layout_margin="20dp"
-                android:background="#C74D4A"
-                android:text="Paid Materaials"
-                android:textColor="#fff" />
-            </LinearLayout>
-        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -284,9 +225,9 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#EEEEEE" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
 
             </LinearLayout>
         </RelativeLayout>
