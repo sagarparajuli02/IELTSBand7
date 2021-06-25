@@ -33,7 +33,7 @@ public class Listening extends AppCompatActivity {
         RecyclerView recyclerView;
 
         setContentView(R.layout.activity_listening);
-        setTitle("Reading Topics");
+        setTitle("Listening Topics");
         if(getSupportActionBar()!=null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);;
             getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -48,26 +48,21 @@ public class Listening extends AppCompatActivity {
         getterSetterList = new ArrayList<>();
 
         //Adding Data into ArrayList
-        getterSetterList.add(new GetterSetter("Sample 1","file:///android_asset/reading/read80.html"));
-        getterSetterList.add(new GetterSetter("Intoduction","file:///android_asset/reading/read80.html"));
-        getterSetterList.add(new GetterSetter("Intoduction","file:///android_asset/reading/read80.html"));
-        getterSetterList.add(new GetterSetter("Intoduction","file:///android_asset/reading/read80.html"));
-        getterSetterList.add(new GetterSetter("Intoduction","file:///android_asset/reading/read80.html"));
-        getterSetterList.add(new GetterSetter("nvbv","file:///android_asset/reading/read80.html"));
-        getterSetterList.add(new GetterSetter("Valiables","file:///android_asset/javascript/variables.html"));
-        getterSetterList.add(new GetterSetter("Operators","file:///android_asset/javascript/operator.html"));
-        getterSetterList.add(new GetterSetter("If..Else","file:///android_asset/javascript/ifelse.html"));
-        getterSetterList.add(new GetterSetter("Switch Case","file:///android_asset/javascript/switch.html"));
-        getterSetterList.add(new GetterSetter("While  Loop","file:///android_asset/javascript/while.html"));
-        getterSetterList.add(new GetterSetter("For Loop","file:///android_asset/javascript/for.html"));
-        getterSetterList.add(new GetterSetter("Loop Control","file:///android_asset/javascript/loopcontrol.html"));
-        getterSetterList.add(new GetterSetter("Functions","file:///android_asset/javascript/function.html"));
-        getterSetterList.add(new GetterSetter("Events","file:///android_asset/javascript/events.html"));
-        getterSetterList.add(new GetterSetter("Cookies","file:///android_asset/javascript/cookies.html"));
-        getterSetterList.add(new GetterSetter("Html DOM","file:///android_asset/javascript/htmldom.html"));
-        getterSetterList.add(new GetterSetter("Error Handling","file:///android_asset/javascript/errorhandeling.html"));
-        getterSetterList.add(new GetterSetter("Animation","file:///android_asset/javascript/lanimatuons.html"));
-        getterSetterList.add(new GetterSetter("Browser","file:///android_asset/javascript/browser.html"));
+        getterSetterList.add(new GetterSetter("Sample 1","file:///android_asset/listening/Sample1.html"));
+        getterSetterList.add(new GetterSetter("Sample 2","file:///android_asset/listening/Sample2.html"));
+        getterSetterList.add(new GetterSetter("Sample 3","file:///android_asset/listening/Sample3.html"));
+        getterSetterList.add(new GetterSetter("Sample 4","file:///android_asset/listening/Sample4.html"));
+        getterSetterList.add(new GetterSetter("Sample 5","file:///android_asset/listening/Sample5.html"));
+        getterSetterList.add(new GetterSetter("Sample 6","file:///android_asset/listening/Sample6.html"));
+        getterSetterList.add(new GetterSetter("Sample 7","file:///android_asset/listening/Sample7.html"));
+        getterSetterList.add(new GetterSetter("Sample 8","file:///android_asset/listening/Sample8.html"));
+        getterSetterList.add(new GetterSetter("Sample 9","file:///android_asset/listening/Sample9.html"));
+        getterSetterList.add(new GetterSetter("Sample 10","file:///android_asset/listening/Sample10.html"));
+        getterSetterList.add(new GetterSetter("Sample 11","file:///android_asset/listening/Sample11.html"));
+        getterSetterList.add(new GetterSetter("Sample 12","file:///android_asset/listening/Sample12.html"));
+        getterSetterList.add(new GetterSetter("Sample 13","file:///android_asset/listening/Sample13.html"));
+        getterSetterList.add(new GetterSetter("Sample 14","file:///android_asset/listening/Sample14.html"));
+        getterSetterList.add(new GetterSetter("Sample 15","file:///android_asset/listening/Sample15.html"));
 
 
         mAdapter = new WebViewAdapter(this, getterSetterList);

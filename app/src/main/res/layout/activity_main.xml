@@ -213,7 +213,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/moreBlogs"
-                android:text="More"
+                android:text=""
                 android:textColor="@color/colorPrimary"
                 android:layout_margin="10dp"
                 android:layout_alignParentRight="true"

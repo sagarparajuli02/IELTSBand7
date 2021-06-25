@@ -36,7 +36,11 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.MyViewHolder
         FeedItem current=feedItems.get(position);
         holder.Title.setText(current.getTitle());
         holder.Description.setText(current.getDescription());
-        Picasso.get().load(current.getThumbnailUrl()).into(holder.Thumbnail);
+        Picasso.get().load(current.getThumbnailUrl())
+                .fit()
+                .centerCrop()
+                .into(holder.Thumbnail)
+        ;
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
