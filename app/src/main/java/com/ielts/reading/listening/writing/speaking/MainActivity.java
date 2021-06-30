@@ -123,13 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(videosButton);
             }
         });
-        rateApp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.sagar.swoopnasuman"));
-                startActivity(intent);
-            }
-        });
+
 
     }
 
